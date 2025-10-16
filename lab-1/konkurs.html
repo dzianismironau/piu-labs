@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/konkurs.css" />
+    <title>Art Competition</title>
+  </head>
+  <body>
+    <p class="back-link">
+      <a href="index.html">Wróć</a>
+    </p>
+    <input type="checkbox" id="theme" class="theme-toggle" hidden />
+    <div class="wrap">
+      <header class="page-head">
+        <h1>Zgłoszenie do Konkursu Plastycznego</h1>
+        <label
+          for="theme"
+          class="moon"
+          aria-label="Switch skin: light / dark"
+          title="Change theme"
+        >
+          🌗
+        </label>
+      </header>
+
+      <form
+        action="https://httpbin.org/post"
+        method="get"
+        class="card competition-form"
+      >
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" maxlength="30" required />
+
+        <label for="surname">Surname:</label>
+        <input
+          type="text"
+          name="surname"
+          id="surname"
+          maxlength="50"
+          required
+        />
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="city">City:</label>
+        <input
+          list="cities"
+          name="city"
+          id="city"
+          placeholder="Write or choose"
+          required
+          title="City"
+        />
+        <datalist id="cities">
+          <option value="Warszawa"></option>
+          <option value="Kraków"></option>
+          <option value="Gdańsk"></option>
+          <option value="Poznań"></option>
+          <option value="Wrocław"></option>
+        </datalist>
+
+        <label for="birth">Date of birth:</label>
+        <input type="date" name="date_of_birth" id="birth" required />
+
+        <label for="number">Number of submitted works (from 1 to 6):</label>
+        <input
+          type="number"
+          name="number_of_works"
+          id="number"
+          inputmode="numeric"
+          min="1"
+          max="6"
+          step="1"
+          required
+        />
+
+        <label for="color">Leading color of works:</label>
+        <input
+          type="color"
+          id="color"
+          name="leading_color"
+          value="#ffd700"
+          required
+        />
+
+        <label for="category">Category of work:</label>
+        <select
+          name="category"
+          id="category"
+          title="Category selection"
+          required
+        >
+          <option value="" selected disabled>-- choose a category --</option>
+          <option>Figure</option>
+          <option>Painting</option>
+          <option>Computer graphics</option>
+          <option>Sculpture</option>
+          <option>Other</option>
+        </select>
+
+        <fieldset class="fieldset-form">
+          <legend>Publication of work online:</legend>
+          <label class="form-line">
+            <input type="radio" name="publication" value="yes" required />
+            <span>Yes</span>
+          </label>
+
+          <label class="form-line">
+            <input type="radio" name="publication" value="no" />
+            <span>No</span>
+          </label>
+        </fieldset>
+
+        <label class="agree">
+          <input type="checkbox" name="rules" required />
+          <span>I agree to the contest rules</span>
+        </label>
+
+        <button type="submit" class="btn-primary">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+  </body>
+</html>

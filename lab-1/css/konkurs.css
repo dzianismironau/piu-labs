@@ -1,0 +1,162 @@
+* {
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.wrap {
+  max-width: 500px;
+  margin: 32px auto 48px;
+  padding: 0 16px;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: 35px;
+}
+
+.moon {
+  display: inline-grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  font-size: 40px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.moon:hover {
+  transform: scale(1.1);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.competition-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.competition-form label {
+  color: var(--text);
+}
+
+.competition-form input[type='text'],
+.competition-form input[type='email'],
+.competition-form input[list],
+.competition-form input[type='date'],
+.competition-form input[type='number'] {
+  block-size: 20px;
+  padding: 10px 12px;
+  /* outline: none; */
+  cursor: pointer;
+}
+.competition-form select {
+  block-size: 44px;
+  padding: 10px 12px;
+  /* outline: none; */
+  cursor: pointer;
+}
+
+#city::placeholder {
+  color: #8f98a1;
+}
+
+.competition-form input[type='color'] {
+  block-size: 40px;
+  padding: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.fieldset-form {
+  margin-top: 6px;
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+
+.fieldset-form legend {
+  padding: 0 10px;
+}
+
+.form-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 13px 0;
+}
+
+.form-line input[type='radio'] {
+  accent-color: var(--focus);
+}
+
+.agree {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agree input[type='checkbox'] {
+  inline-size: 16px;
+  block-size: 16px;
+  accent-color: var(--focus);
+}
+
+.btn-primary {
+  margin-top: 6px;
+  block-size: 45px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--btn);
+  color: var(--card);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: var(--btn-hover);
+}
+
+.back-link {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  width: 320px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.back-link a {
+  color: #4da8ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.back-link a:hover {
+  color: #ffcc00;
+}
