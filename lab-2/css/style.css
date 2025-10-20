@@ -1,19 +1,61 @@
 /* Minimalny reset  */
 html {
-  font-size: 16px; /* bazowy rozmiar czcionki */
-  font-family: system-ui, sans-serif; /* font systemowy */
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.5; /* lepsza czytelność */
 }
+
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 1rem;
   padding: 0;
+  height: 100vh;
+}
+
+h1 {
+  color: #404040;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 a {
-  color: #0066cc; /* niebieski kolor linków */
-  text-decoration: none; /* bez podkreślenia */
+  color: #1a7f0f;
+  text-decoration: none;
   font-size: 1.4rem;
+  font-weight: 300;
+  border: 1px solid #1a7f0f;
+  border-radius: 8px;
+  box-shadow: 1px 1px 7px #404040;
+  padding: 1px 5px;
 }
+
 a:hover {
-  text-decoration: underline; /* podkreślenie przy najechaniu */
+  transition-duration: 0.3s;
+  background-color: #7b7e7b23;
+  text-decoration: dashed;
+  color: #155d0d;
+  border: 1px solid #155d0d;
+  border-radius: 13px;
+}
+
+.container {
+  background-color: rgba(245, 245, 220, 0.7);
+  min-height: 50vh;
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  border: 2px solid rgba(245, 245, 220, 0.7);
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px #404040;
 }
