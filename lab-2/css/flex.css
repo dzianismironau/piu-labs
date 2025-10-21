@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+legend {
+  background-color: white;
+  font-weight: bold;
+}
+
+.theme-picker {
+  background-color: rgba(255, 200, 0, 0.3);
+  border: 2px solid rgb(218, 150, 4);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+body:has(.theme-picker input[value='blue']:checked) {
+  .container {
+    background-color: rgba(255, 200, 0, 0.3);
+    border: 2px solid rgb(218, 150, 4);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .item {
+    background-color: blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 40px;
+    flex-basis: 30%;
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      background-color: rgba(255, 200, 0, 0.3);
+      border: 2px solid rgb(218, 150, 4);
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: column wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .item {
+      background-color: blue;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      height: 40px;
+      flex-basis: 50%;
+    }
+  }
+}
