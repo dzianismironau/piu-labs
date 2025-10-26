@@ -1,19 +1,265 @@
-/* Minimalny reset  */
-html {
-  font-size: 16px; /* bazowy rozmiar czcionki */
-  font-family: system-ui, sans-serif; /* font systemowy */
-  line-height: 1.5; /* lepsza czytelność */
-}
-body {
-  margin: 1rem;
-  padding: 0;
+:root {
+  --image-max: 500px;
+  --panel-width: 300px;
+  --gap: 28px;
+  --radius: 12px;
+  --ring: 3px;
+  --sw: 28px;
+  --sel-scale: 0.78;
+
+  --color-blue: #15539f;
+  --color-red: #d42c20;
+  --color-green: #368d3b;
+  --color-yellow: #e2e21e;
+  --ink: #18191b;
 }
 
-a {
-  color: #0066cc; /* niebieski kolor linków */
-  text-decoration: none; /* bez podkreślenia */
-  font-size: 1.4rem;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-a:hover {
-  text-decoration: underline; /* podkreślenie przy najechaniu */
+
+html {
+  font-size: 16px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  background: #f5f5dc80;
+  display: grid;
+  place-items: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+.page {
+  --brand: var(--color-blue);
+  --img: url('../img/polo_b.png');
+
+  width: min(
+    calc(var(--image-max)+var(--gap)+var(--panel-w)),
+    calc(100vw - 48px)
+  );
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: center;
+  align-items: stretch;
+  margin: 30px;
+}
+.page:has(#color-blue:checked) {
+  --brand: var(--color-blue);
+  --img: url('../img/polo_b.png');
+}
+.page:has(#color-red:checked) {
+  --brand: var(--color-red);
+  --img: url('../img/polo_r.png');
+}
+.page:has(#color-green:checked) {
+  --brand: var(--color-green);
+  --img: url('../img/polo_g.png');
+}
+.page:has(#color-yellow:checked) {
+  --brand: var(--color-yellow);
+  --img: url('../img/polo_y.png');
+}
+
+#variant {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.polo-images {
+  display: grid;
+  place-items: center;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  border: var(--ring) solid var(--brand);
+  border-radius: var(--radius);
+  background: #fff;
+  flex: 0 0 auto;
+}
+.polo-images .image {
+  width: min(var(--image-max), calc(100vw - 48px));
+  aspect-ratio: 1/1;
+  background: no-repeat center/contain var(--img);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 0 0 var(--panel-width);
+  width: var(--panel-width);
+  max-width: 100%;
+  justify-self: center;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header .promotion {
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.header .description {
+  grid-column: 1/-1;
+  margin: 0;
+  color: #63707e;
+  font-weight: 400;
+}
+
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: fit-content;
+  align-self: center;
+}
+
+legend {
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.colors,
+.sizes {
+  justify-self: center;
+  display: inline-grid;
+  justify-items: center;
+}
+
+.swatches {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.swatches label {
+  width: var(--sw);
+  height: var(--sw);
+  background: var(--color);
+  border-radius: 50%;
+  outline: 2px solid #000;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  --color: #000;
+  --active: 0;
+}
+
+.colors-choice .swatches label[for='color-blue'] {
+  --color: var(--color-blue);
+}
+.colors-choice .swatches label[for='color-red'] {
+  --color: var(--color-red);
+}
+.colors-choice .swatches label[for='color-green'] {
+  --color: var(--color-green);
+}
+.colors-choice .swatches label[for='color-yellow'] {
+  --color: var(--color-yellow);
+}
+
+.page:has(#color-blue:checked) .swatches label[for='color-blue'],
+.page:has(#color-red:checked) .swatches label[for='color-red'],
+.page:has(#color-green:checked) .swatches label[for='color-green'],
+.page:has(#color-yellow:checked) .swatches label[for='color-yellow'] {
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+  border-color: var(--brand);
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.size {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  cursor: pointer;
+  background-image: linear-gradient(var(--brand), var(--brand));
+  background-repeat: no-repeat;
+  background-size: calc(var(--sel, 0) * 100%) 100%;
+  color: color-mix(
+    in srgb,
+    var(--ink) calc((1 - var(--sel, 0)) * 100%),
+    #fff calc(var(--sel, 0) * 100%)
+  );
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.page:has(#size-s:checked) .size[for='size-s'],
+.page:has(#size-m:checked) .size[for='size-m'],
+.page:has(#size-l:checked) .size[for='size-l'],
+.page:has(#size-xl:checked) .size[for='size-xl'] {
+  --sel: 1;
+  background-color: var(--brand);
+  color: #fff;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+}
+
+button {
+  appearance: none;
+  border: 2px solid #000;
+  padding: 24px 18px;
+  border-radius: 10px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  width: 180px;
+  align-self: center;
+  cursor: pointer;
 }

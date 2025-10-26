@@ -2,11 +2,60 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <title>Lab 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab-3</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Lab 3</h1>
-    <a href="..">Powrót</a>
+    <main class="page">
+      <form id="variant">
+        <input type="radio" class="visually-hidden" id="color-blue" name="color" checked />
+        <input type="radio" class="visually-hidden" id="color-red" name="color" />
+        <input type="radio" class="visually-hidden" id="color-green" name="color" />
+        <input type="radio" class="visually-hidden" id="color-yellow" name="color" />
+
+        <input type="radio" class="visually-hidden" id="size-s" name="size" />
+        <input type="radio" class="visually-hidden" id="size-m" name="size" checked />
+        <input type="radio" class="visually-hidden" id="size-l" name="size" />
+        <input type="radio" class="visually-hidden" id="size-xl" name="size" />
+      </form>
+
+      <section class="polo-images">
+        <div class="image" aria-label="Koszulka Polo"></div>
+      </section>
+
+      <section class="panel">
+        <header class="header">
+          <h1>Koszulka Polo</h1>
+          <span class="promotion">Promocja!</span>
+          <p class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam
+            quis adipisci maiores.
+          </p>
+        </header>
+
+        <fieldset class="colors-choice">
+          <legend>Kolor</legend>
+          <div class="swatches">
+            <label for="color-blue" title="Niebieski"></label>
+            <label for="color-red" title="Czerwony"></label>
+            <label for="color-green" title="Zielony"></label>
+            <label for="color-yellow" title="Żółty"></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="sizes">
+          <legend>Rozmiar</legend>
+          <div class="size-grid" role="radiogroup">
+            <label for="size-s" class="size">S</label>
+            <label for="size-m" class="size">M</label>
+            <label for="size-l" class="size">L</label>
+            <label for="size-xl" class="size">XL</label>
+          </div>
+        </fieldset>
+
+        <div class="price">59,99 zł</div>
+        <button type="submit" form="variant">🛒 Do koszyka</button>
+    </main>
   </body>
 </html>
