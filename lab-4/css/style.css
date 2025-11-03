@@ -1,19 +1,166 @@
-/* Minimalny reset  */
-html {
-  font-size: 16px; /* bazowy rozmiar czcionki */
-  font-family: system-ui, sans-serif; /* font systemowy */
-  line-height: 1.5; /* lepsza czytelność */
-}
-body {
-  margin: 1rem;
-  padding: 0;
+/* Tło strony – bardzo jasna szarość */
+:root{
+  --gap: 12px;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(0,0,0,.06);
+  --col-todo: rgba(255, 0, 0, 0.08);
+  --col-inprogress: rgba(255, 193, 7, 0.12);
+  --col-done: rgba(40, 167, 69, 0.10);
 }
 
-a {
-  color: #0066cc; /* niebieski kolor linków */
-  text-decoration: none; /* bez podkreślenia */
-  font-size: 1.4rem;
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #f6f6f7; /* еле-еле серый фон */
+  color: #222;
 }
-a:hover {
-  text-decoration: underline; /* podkreślenie przy najechaniu */
+
+#app{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 18px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Kolumny (полупрозрачные цвета) */
+.column{
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.column[data-col="todo"]{ background: var(--col-todo); }
+.column[data-col="inprogress"]{ background: var(--col-inprogress); }
+.column[data-col="done"]{ background: var(--col-done); }
+
+.column__header{
+  padding: 14px;
+  text-align: center;
+}
+.column__title{
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.column__counter{
+  margin: 0 auto 10px; /* счётчик по центру под заголовком */
+  font-size: .9rem;
+  opacity: .8;
+}
+.column__actions{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn{
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,.08);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+
+/* Область карточек: 2 в строке */
+.column__cards{
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-content: start;
+  min-height: 120px;
+}
+
+/* Карточка (прямоугольник, высота чуть больше ширины) */
+.card{
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 5; /* высота > ширина */
+  overflow: hidden;
+  user-select: none;
+}
+.card[draggable="true"]{ cursor: grab; }
+.card:active{ cursor: grabbing; }
+
+
+/* Верхняя панель с кнопками */
+.card__top{
+  height: 32px;
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr; /* 1: левая стрелка, 2: х, 3: правая стрелка */
+  align-items: center;
+  padding: 4px;
+  gap: 4px;
+}
+
+/* ЯВНО указываем колонку для каждого элемента */
+
+
+.card__close{
+  /* УБРАТЬ absolute/left/top/transform/z-index */
+  position: static;
+  justify-self: center;      /* в центр средней колонки */
+  width: 28px;
+  height: 28px;
+  line-height: 26px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  cursor: pointer;
+}
+
+.card__arrow{
+  border: none;
+  background: rgba(255,255,255,.9);
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  cursor: pointer;
+}
+
+/* ЯВНО указываем колонку для каждого элемента */
+.card__arrow--left  { grid-column: 1; justify-self: start; }
+.card__close        { grid-column: 2; justify-self: center; }
+.card__arrow--right { grid-column: 3; justify-self: end; }
+
+
+/* Редактируемый текст */
+.card__content{
+  flex: 1;
+  margin: 6px 8px 10px;
+  background: rgba(255,255,255,.65);
+  border-radius: 8px;
+  padding: 8px;
+  outline: none;
+  overflow: auto;
+}
+
+/* Подсказка места вставки при DnD */
+.placeholder{
+  border: 2px dashed rgba(0,0,0,.2);
+  border-radius: 12px;
+  height: 100%;
+  min-height: 60px;
+}
+
+/* Адаптив */
+@media (max-width: 900px){
+  #app{ grid-template-columns: 1fr; }
+  .column__cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
