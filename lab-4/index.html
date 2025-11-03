@@ -1,64 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>lab-4 Kanban</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <main id="app">
-    <!-- Kolumna: Do zrobienia -->
-    <section class="column" data-col="todo" aria-label="Do zrobienia">
-      <header class="column__header">
-        <h2 class="column__title">Do zrobienia</h2>
-        <div class="column__counter" aria-live="polite"><span data-counter>0</span> kart</div>
-        <div class="column__actions">
-          <button class="btn btn-add" data-action="add">Dodaj kartę</button>
-          <button class="btn btn-paint" data-action="paint">Pokoloruj kolumnę</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>lab-4 Kanban</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section class="column" data-col="todo" aria-label="Do zrobienia">
+        <header class="column__header">
+          <h2 class="column__title">Do zrobienia</h2>
+          <div class="column__counter" aria-live="polite">
+            <span data-counter>0</span> kart
+          </div>
+          <div class="column__actions">
+            <button class="btn btn-add" data-action="add">Dodaj kartę</button>
+            <button class="btn btn-paint" data-action="paint">
+              Pokoloruj kolumnę
+            </button>
+          </div>
+        </header>
+        <div class="column__cards" data-dropzone></div>
+      </section>
+
+      <section class="column" data-col="inprogress" aria-label="W trakcie">
+        <header class="column__header">
+          <h2 class="column__title">W trakcie</h2>
+          <div class="column__counter" aria-live="polite">
+            <span data-counter>0</span> kart
+          </div>
+          <div class="column__actions">
+            <button class="btn btn-add" data-action="add">Dodaj kartę</button>
+            <button class="btn btn-paint" data-action="paint">
+              Pokoloruj kolumnę
+            </button>
+          </div>
+        </header>
+        <div class="column__cards" data-dropzone></div>
+      </section>
+
+      <section class="column" data-col="done" aria-label="Zrobione">
+        <header class="column__header">
+          <h2 class="column__title">Zrobione</h2>
+          <div class="column__counter" aria-live="polite">
+            <span data-counter>0</span> kart
+          </div>
+          <div class="column__actions">
+            <button class="btn btn-add" data-action="add">Dodaj kartę</button>
+            <button class="btn btn-paint" data-action="paint">
+              Pokoloruj kolumnę
+            </button>
+          </div>
+        </header>
+        <div class="column__cards" data-dropzone></div>
+      </section>
+    </main>
+
+    <template id="card-template">
+      <article class="card" draggable="true">
+        <div class="card__top">
+          <button
+            class="card__arrow card__arrow--left"
+            data-card-action="left"
+            aria-label="Przenieś w lewo"
+          >
+            ←
+          </button>
+          <button
+            class="card__close"
+            data-card-action="delete"
+            aria-label="Usuń kartę"
+          >
+            ×
+          </button>
+          <button
+            class="card__arrow card__arrow--right"
+            data-card-action="right"
+            aria-label="Przenieś w prawo"
+          >
+            →
+          </button>
         </div>
-      </header>
-      <div class="column__cards" data-dropzone></div>
-    </section>
-
-    <!-- Kolumna: W trakcie -->
-    <section class="column" data-col="inprogress" aria-label="W trakcie">
-      <header class="column__header">
-        <h2 class="column__title">W trakcie</h2>
-        <div class="column__counter" aria-live="polite"><span data-counter>0</span> kart</div>
-        <div class="column__actions">
-          <button class="btn btn-add" data-action="add">Dodaj kartę</button>
-          <button class="btn btn-paint" data-action="paint">Pokoloruj kolumnę</button>
+        <div
+          class="card__content"
+          contenteditable="true"
+          spellcheck="false"
+          data-role="content"
+        >
+          Nowa karta
         </div>
-      </header>
-      <div class="column__cards" data-dropzone></div>
-    </section>
+      </article>
+    </template>
 
-    <!-- Kolumna: Zrobione -->
-    <section class="column" data-col="done" aria-label="Zrobione">
-      <header class="column__header">
-        <h2 class="column__title">Zrobione</h2>
-        <div class="column__counter" aria-live="polite"><span data-counter>0</span> kart</div>
-        <div class="column__actions">
-          <button class="btn btn-add" data-action="add">Dodaj kartę</button>
-          <button class="btn btn-paint" data-action="paint">Pokoloruj kolumnę</button>
-        </div>
-      </header>
-      <div class="column__cards" data-dropzone></div>
-    </section>
-  </main>
-
-  <template id="card-template">
-    <article class="card" draggable="true">
-      <div class="card__top">
-        <button class="card__arrow card__arrow--left" data-card-action="left" aria-label="Przenieś w lewo">←</button>
-        <button class="card__close" data-card-action="delete" aria-label="Usuń kartę">×</button>
-        <button class="card__arrow card__arrow--right" data-card-action="right" aria-label="Przenieś w prawo">→</button>
-      </div>
-      <div class="card__content" contenteditable="true" spellcheck="false" data-role="content">Nowa karta</div>
-    </article>
-  </template>
-
-  <script src="js/script.js" defer></script>
-</body>
+    <script src="js/script.js" defer></script>
+  </body>
 </html>
